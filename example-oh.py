@@ -61,8 +61,8 @@ while True:
 
     cv2.putText(frame, text, (90, 60), cv2.FONT_HERSHEY_DUPLEX, 1.6, (147, 58, 31), 2)
 
-    left_pupil = gaze.pupil_left_coords()
-    right_pupil = gaze.pupil_right_coords()
+    left_pupil = gaze.pupil_left_coords() - 0.45
+    right_pupil = gaze.pupil_right_coords() - 0.9
 
     horizontal_ratio = gaze.horizontal_ratio()
     vertical_ratio = gaze.vertical_ratio()
@@ -71,8 +71,8 @@ while True:
     mimicked_y = 0
 
     if horizontal_ratio is not None and vertical_ratio is not None:
-        mimicked_x = math.floor(640 * horizontal_ratio) - 30
-        mimicked_y = math.floor(480 * vertical_ratio) + 20
+        mimicked_x = math.floor(2880 * horizontal_ratio) - 30
+        mimicked_y = math.floor(1800 * vertical_ratio) + 20
         centerized_axis = c.centerized(mimicked_x, mimicked_y)
     else:
         pass
@@ -83,7 +83,7 @@ while True:
     cv2.putText(frame, "Hor    : " + str(horizontal_ratio), (0, 200), cv2.FONT_HERSHEY_DUPLEX, 0.6, (147, 58, 31), 1)
     cv2.putText(frame, "Ver    : " + str(vertical_ratio), (0, 235), cv2.FONT_HERSHEY_DUPLEX, 0.6, (147, 58, 31), 1)
 
-    cv2.putText(frame, "+", centerized_axis, cv2.FONT_HERSHEY_DUPLEX, 2, (0, 0, 255), 3)
+cv2.putText(frame, "+", centerized_axis, cv2.FONT_HERSHEY_DUPLEX, 2, (0, 0, 255), 3)
 
     cv2.imshow("Demo", frame)
 
